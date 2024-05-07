@@ -221,6 +221,11 @@ fn main() {
     }
 
     if !malloc_conf.is_empty() {
+        malloc_conf.push(',');
+    }
+    malloc_conf.push_str("thp:always,metadata_thp:always");
+
+    if !malloc_conf.is_empty() {
         info!("--with-malloc-conf={}", malloc_conf);
         cmd.arg(format!("--with-malloc-conf={malloc_conf}"));
     }
